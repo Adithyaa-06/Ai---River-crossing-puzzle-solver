@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>River Crossing Solver</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <main class="container">
+    <header>
+      <h1>River Crossing Puzzle Solver</h1>
+      <p class="subtitle">State space search with BFS and DFS</p>
+    </header>
+
+    <!-- Controls: choose puzzle and algorithm -->
+    <section class="card controls">
+      <label>
+        Puzzle
+        <select id="puzzle">
+          <option value="farmer">Farmer, Wolf, Goat, Cabbage</option>
+          <option value="missionaries">Missionaries &amp; Cannibals</option>
+        </select>
+      </label>
+      <label>
+        Algorithm
+        <select id="algorithm">
+          <option value="bfs">BFS (Breadth-First)</option>
+          <option value="dfs">DFS (Depth-First)</option>
+        </select>
+      </label>
+      <button id="solve-btn" class="primary">Solve</button>
+    </section>
+
+    <p id="error" class="error" hidden></p>
+
+    <!-- River scene -->
+    <section class="card">
+      <div class="scene">
+        <div class="bank" id="left-bank"></div>
+        <div class="river">
+          <div class="boat" id="boat">🚣</div>
+        </div>
+        <div class="bank" id="right-bank"></div>
+      </div>
+      <p class="step-info" id="step-info">Choose a puzzle and press Solve.</p>
+
+      <div class="playback">
+        <button id="prev-btn" disabled>◀ Previous</button>
+        <button id="next-btn" disabled>Next ▶</button>
+        <button id="play-btn" disabled>▶ Auto-play</button>
+        <button id="reset-btn" disabled>⟲ Reset</button>
+        <label class="speed">
+          Speed
+          <input type="range" id="speed" min="200" max="2000" step="100" value="1000">
+          <span id="speed-label">1.0s</span>
+        </label>
+      </div>
+    </section>
+
+    <div class="grid">
+      <!-- Move log -->
+      <section class="card">
+        <h2>Move Log</h2>
+        <ol id="move-log" class="move-log"></ol>
+      </section>
+
+      <!-- Stats and comparison -->
+      <section class="card">
+        <h2>Search Stats</h2>
+        <div class="stats">
+          <div class="stat"><span id="stat-expanded">–</span><small>Nodes expanded</small></div>
+          <div class="stat"><span id="stat-length">–</span><small>Path length</small></div>
+          <div class="stat"><span id="stat-time">–</span><small>Time (ms)</small></div>
+        </div>
+
+        <h2>BFS vs DFS</h2>
+        <table class="compare">
+          <thead>
+            <tr><th>Metric</th><th>BFS</th><th>DFS</th></tr>
+          </thead>
+          <tbody id="compare-body">
+            <tr><td colspan="3">Solve a puzzle to compare.</td></tr>
+          </tbody>
+        </table>
+      </section>
+    </div>
+  </main>
+
+  <script src="/static/script.js"></script>
+</body>
+</html>

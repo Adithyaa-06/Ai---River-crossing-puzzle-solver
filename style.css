@@ -1,0 +1,271 @@
+/* Clean light theme for the River Crossing Solver */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  background: #f4f6fa;
+  color: #1f2937;
+}
+
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 24px 16px 48px;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+h1 {
+  margin: 0;
+  font-size: 1.8rem;
+}
+
+h2 {
+  font-size: 1.05rem;
+  margin: 0 0 12px;
+}
+
+.subtitle {
+  margin: 4px 0 0;
+  color: #6b7280;
+}
+
+.card {
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+  padding: 20px;
+  margin-bottom: 16px;
+}
+
+/* ---------- Controls ---------- */
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.controls label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 0.85rem;
+  color: #4b5563;
+}
+
+select,
+button {
+  font: inherit;
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  background: #ffffff;
+  color: #1f2937;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:hover:not(:disabled) {
+  background: #f3f4f6;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+button.primary {
+  background: #2563eb;
+  border-color: #2563eb;
+  color: #ffffff;
+}
+
+button.primary:hover:not(:disabled) {
+  background: #1d4ed8;
+}
+
+.error {
+  background: #fee2e2;
+  color: #991b1b;
+  padding: 10px 14px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+/* ---------- River scene ---------- */
+
+.scene {
+  display: flex;
+  height: 200px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.bank {
+  flex: 1;
+  background: #bbf7d0;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px;
+  font-size: 2rem;
+}
+
+.river {
+  flex: 1.2;
+  position: relative;
+  background: linear-gradient(180deg, #60a5fa, #2563eb);
+}
+
+/* The boat sits on the left or right edge of the river and slides across. */
+.boat {
+  position: absolute;
+  top: 50%;
+  left: 8px;
+  transform: translateY(-50%);
+  font-size: 2.4rem;
+  transition: left 0.6s ease-in-out;
+}
+
+.boat.right {
+  left: calc(100% - 3.2rem);
+}
+
+.step-info {
+  text-align: center;
+  margin: 14px 0;
+  font-weight: 500;
+}
+
+.playback {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  align-items: center;
+}
+
+.speed {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.85rem;
+  color: #4b5563;
+}
+
+/* ---------- Move log and stats ---------- */
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.grid .card {
+  margin-bottom: 0;
+}
+
+.move-log {
+  margin: 0;
+  padding-left: 0;
+  list-style: none;
+  max-height: 320px;
+  overflow-y: auto;
+}
+
+.move-log li {
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.92rem;
+}
+
+.move-log li:hover {
+  background: #f3f4f6;
+}
+
+.move-log li.active {
+  background: #dbeafe;
+  color: #1e40af;
+  font-weight: 600;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.stat {
+  background: #f9fafb;
+  border-radius: 8px;
+  padding: 10px;
+  text-align: center;
+}
+
+.stat span {
+  display: block;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #2563eb;
+}
+
+.stat small {
+  color: #6b7280;
+}
+
+.compare {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.92rem;
+}
+
+.compare th,
+.compare td {
+  padding: 8px;
+  border-bottom: 1px solid #e5e7eb;
+  text-align: left;
+}
+
+.compare th {
+  color: #4b5563;
+}
+
+/* ---------- Small screens ---------- */
+
+@media (max-width: 700px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .scene {
+    height: 160px;
+  }
+
+  .bank {
+    font-size: 1.5rem;
+  }
+
+  .boat {
+    font-size: 1.8rem;
+  }
+
+  .boat.right {
+    left: calc(100% - 2.6rem);
+  }
+}
